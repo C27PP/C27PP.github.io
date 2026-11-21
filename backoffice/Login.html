@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body id="fondo" class="auth-layout">
+    <main class="card">
+    <header class="card-header">
+      <h1>Login</h1>
+      <p>Ingresa tus datos para continuar</p>
+    </header>
+
+    <form action="home.html" method="get">
+      <div class="form-group">
+        <label for="email">Correo electronico</label>
+        <input type="email" id="email" name="email" placeholder="tu@correo.com" autocomplete="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="password" placeholder="********" autocomplete="current-password" required>
+      </div>
+
+      <button type="submit" class="btn">Entrar</button>
+    </form>
+
+    <footer class="auth-links">
+      <p>¿No estas registrado? <a href="register.html">Registrate aqui</a></p>
+    </footer>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.134.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.fog.min.js"></script>
+
+  <script src="vanta.fog.min.js"></script>
+  <script>
+  VANTA.FOG({
+    el: "#fondo",
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200.00,
+    minWidth: 200.00,
+    blurFactor: 0.90,
+    speed: 2.50,
+    zoom: 0.50,
+    highlightColor: 0x2563eb,
+    midtoneColor: 0x2563eb,
+    lowlightColor: 0xf8fafc,
+    baseColor: 0xf8fafc
+  })
+  </script>
+</body>
+</html>
