@@ -40,7 +40,7 @@ function logout() {
 // --1. Registro (POST /auth/register)--
 const registerForm = document.getElementById("registerForm");
 if (registerForm) {
-  if (getToken()) window.location.href = "home.html";
+  if (getToken()) window.location.href = "index.html";
 
   registerForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -78,7 +78,7 @@ if (registerForm) {
 // --2. Login (POST /auth/login)--
 const loginForm = document.getElementById("loginForm");
 if (loginForm) {
-  if (getToken()) window.location.href = "home.html";
+  if (getToken()) window.location.href = "index.html";
 
   loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -102,7 +102,7 @@ if (loginForm) {
       if (!res.ok) throw new Error(data.message || "Credenciales incorrectas.");
 
       saveSession(data.token, data.user);
-      window.location.href = "home.html";
+      window.location.href = "index.html";
     } catch (error) {
       showMessage(error.message, true);
       btn.disabled = false;
@@ -199,7 +199,7 @@ if (homeView) {
         clone.querySelector(".project-title").textContent = proj.title;
         clone.querySelector(".project-desc").textContent = proj.description;
 
-        // Tecnologías
+        // Tecnologias
         const techsContainer = clone.querySelector(".project-techs");
         if (Array.isArray(proj.technologies)) {
           proj.technologies.forEach((tech) => {
@@ -210,6 +210,24 @@ if (homeView) {
               techsContainer.appendChild(span);
             }
           });
+        }
+
+        // Imagenes del proyecto
+        const imagesContainer = clone.querySelector(".project-images");
+        if (Array.isArray(proj.images) && proj.images.length > 0) {
+          proj.images.forEach((url) => {
+            if (url && url.trim()) {
+              const img = document.createElement("img");
+              img.src = url.trim();
+              img.alt = `Vista previa de ${proj.title}`;
+              img.loading = "lazy";
+              // Si la URL esta rota oculta esa imagen
+              img.onerror = () => (img.style.display = "none");
+              imagesContainer.appendChild(img);
+            }
+          });
+        } else {
+          imagesContainer.style.display = "none";
         }
 
         // Repositorio opcional
@@ -312,4 +330,3 @@ if (homeView) {
     loadProjects();
     }
 }
-

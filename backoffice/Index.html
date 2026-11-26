@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body id="fondo" >
+
+  <div id="homeView" style="display: none;">
+    <header class="navbar">
+      <strong>MiBackOffice</strong>
+      <button type="button" id="logoutBtn" class="btn-logout">Cerrar sesion</button>
+    </header>
+
+    <main class="container">
+      <h1 id="welcomeUser">Panel Principal</h1>
+      <p>Gestiona los proyectos de tu portafolio.</p>
+
+      <div id="message" class="msg" style="display: none; margin-top: 1rem;">a</div>
+
+      <section class="home-layout">
+        <!-- Tarjeta Resumen -->
+        <article class="box summary-box">
+          <h2>Resumen</h2>
+          <p class="muted-text">Sesion activa en BackOffice.</p>
+          <p class="stats-text">Proyectos registrados: <strong id="projectCount">0</strong></p>
+        </article>
+
+        <!-- Mi Historial con CRUD -->
+        <article class="box history-box">
+          <div class="panel-header">
+            <h2>Mi Historial</h2>
+            <button type="button" id="toggleFormBtn" class="btn btn-sm">+ Agregar Proyecto</button>
+          </div>
+
+          <!-- Formulario para Agregar o Actualizar Proyecto (Oculto por defecto) -->
+          <form id="projectForm" class="project-form" style="display: none;">
+            <h3 id="formTitle">Nuevo Proyecto</h3>
+            <input type="hidden" id="projectId">
+
+            <div class="form-group">
+              <label for="title">Titulo del proyecto *</label>
+              <input type="text" id="title" placeholder="Ej. Sistema de Ventas" required>
+            </div>
+
+            <div class="form-group">
+              <label for="description">Descripcion *</label>
+              <textarea id="description" rows="3" placeholder="Breve descripcion del proyecto" required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="technologies">Tecnologias (separadas por coma)</label>
+              <input type="text" id="technologies" placeholder="Ej. HTML, CSS, JavaScript, Node.js">
+            </div>
+
+            <div class="form-group">
+              <label for="repository">URL del Repositorio (opcional)</label>
+              <input type="url" id="repository" placeholder="https://github.com">
+            </div>
+
+            <div class="form-group">
+              <label for="images">URLs de Imagenes (opcional, separadas por coma)</label>
+              <input type="text" id="images" placeholder="https://ejemplo.com">
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" id="saveProjectBtn" class="btn btn-sm">Guardar Proyecto</button>
+              <button type="button" id="cancelFormBtn" class="btn-secondary">Cancelar</button>
+            </div>
+          </form>
+
+          <!-- Contenedor para renderizar los proyectos -->
+          <div id="projectsList" class="projects-list">
+            <p class="muted-text">Cargando proyectos...</p>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <!-- Plantilla HTML para las Tarjetas de Proyectos -->
+  <template id="projectCardTemplate">
+    <div class="project-card">
+      <div class="project-info">
+        <h3 class="project-title"></h3>
+        <p class="project-desc"></p>
+
+        <div class="project-images"></div>
+        
+        <div class="project-techs"></div>
+        <a class="project-repo" href="#" target="_blank" rel="noopener noreferrer">Ver repositorio</a>
+      </div>
+      <div class="project-actions">
+        <button type="button" class="btn-edit">Actualizar</button>
+        <button type="button" class="btn-delete">Eliminar</button>
+      </div>
+    </div>
+  </template>
+
+  <script src="app.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.134.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js"></script>
+
+  <script src="vanta.net.min.js"></script>
+  <script>
+  VANTA.NET({
+  el: "#fondo",
+  mouseControls: true,
+  touchControls: true,
+  gyroControls: false,
+  minHeight: 200.00,
+  minWidth: 200.00,
+  scale: 1.00,
+  scaleMobile: 1.00,
+  color: 0x2563eb,
+  backgroundColor: 0xf8fafc,
+  maxDistance: 24.00,
+  spacing: 17.00
+  })
+  </script>
+</body>
+</html>
